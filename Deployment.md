@@ -78,4 +78,4 @@ kubectl rollout history deployment/test-deploy --revision=2
 kubectl rollout undo deployment/test-deploy --to-revision=2
 ```
 
-  # Thn
+  # Thank you 
