@@ -39,6 +39,15 @@ kubectl get pod
 ```
 kubectl get all
 ```
+- Describe command 
+```
+Kubectl describe pod < POD NMAE>
+Kubectl logs <POD NAME>
+Kubectl exec -it <pod name> bash 
+kubectl get pod 
+kubectl get pod -o wide 
+```
+
 How to delete the pod 
 ```
 kubectl delete pod <POD Name>
