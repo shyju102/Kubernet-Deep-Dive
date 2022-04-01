@@ -7,11 +7,11 @@ Minikube is a tool that makes it easy to run Kubernetes locally. This runs a sin
 # 3. What are the various K8's services running on nodes and describe the role of each service?
 Mainly K8 cluster consists of two types of nodes, Worker and master.
 
-Worker node: (This runs on master node)
+- Worker node: (This runs on master node)
 
 Kube-proxy: This service is responsible for the communication of pods within the cluster and to the outside network, which runs on every node. This service is responsible to maintain network protocols when your pod establishes a network communication.
 kubelet: Each node has a running kubelet service that updates the running node accordingly with the configuration(YAML or JSON) file. NOTE: kubelet service is only for containers created by Kubernetes.
-Master services:
+- Master services:
 
 Kube-apiserver: Master API service which acts as an entry point to K8 cluster.
 Kube-scheduler: Schedule PODs according to available resources on executor nodes.
