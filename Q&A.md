@@ -11,7 +11,7 @@ Mainly K8 cluster consists of two types of nodes, Worker and master.
 
 Kube-proxy: This service is responsible for the communication of pods within the cluster and to the outside network, which runs on every node. This service is responsible to maintain network protocols when your pod establishes a network communication.
 kubelet: Each node has a running kubelet service that updates the running node accordingly with the configuration(YAML or JSON) file. NOTE: kubelet service is only for containers created by Kubernetes.
-- Master services:
+- Master Node:
 
 Kube-apiserver: Master API service which acts as an entry point to K8 cluster.
 Kube-scheduler: Schedule PODs according to available resources on executor nodes.
