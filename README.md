@@ -1,8 +1,10 @@
-# Kubernetes (K8s)
+# Hi there 👋, I'm Shyju Krishnan 
 
-![logo](https://user-images.githubusercontent.com/62458394/166749692-f7eb4b57-7358-4df4-ac83-144b82d13180.png)
+<h3 align="left">Connect with Me:</h3>
+<a href="https://linkedin.com/in/Shyjustack" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="cloudnloud" height="30" width="40" /></a>
 
-# Kubernet Administration Deep Dive 
+# Welcome to Kubernet Administration Deep Dive 
+
 # Before starting this exercise, you must have run minimum two Ubuntu Linux machine.
 -	Create Ubuntu Linux machine in AZURE Cloud [or] AWS Cloud [or] In your local laptop using VMware or oracle virtual box or Hyper-V workstation
 -	Make sure you opened SSH,HTTP,8080 ports for this new VM
@@ -13,6 +15,7 @@
 -	Name Space 
 -	Kubernet Deployment 
 -	Kubernet replica set 
+-	Inginx 
 
 # Kubernet installation step by step 
 . Update the repository on both servers 
