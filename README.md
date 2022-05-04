@@ -7,23 +7,17 @@
 
 <img src="https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png" width="100">
 
-# Before starting this exercise, you must have run minimum two Ubuntu Linux machine.
--	Create Ubuntu Linux machine in AZURE Cloud [or] AWS Cloud [or] In your local laptop using VMware or oracle virtual box or Hyper-V workstation
--	Make sure you opened SSH,HTTP,8080 ports for this new VM
 
-## Labs
+## Topics 
 
-* [](docs/01-prerequisites.md)
+* [Prerequisites](https://github.com/cloudnloud/Kubernet-Deep-Dive/blob/main/Prerequisites.MD)
 * [Kubernet cluster installation and configuration (on-premises)](https://github.com/cloudnloud/Kubernet-Deep-Dive/blob/main/Installation.md)
-* [Installing the Client Tools](docs/03-client-tools.md)
-# Topics 
--	Kubernet cluster installation and configuration (on-premises)
--	Network creation (calico)
--	Pod creation 
--	Name Space 
--	Kubernet Deployment 
--	Kubernet replica set 
--	Inginx 
+* [POD creation](https://github.com/cloudnloud/Kubernet-Deep-Dive/blob/main/POD.md)
+* [Name Space](https://github.com/cloudnloud/Kubernet-Deep-Dive/blob/main/POD.md)
+* [Kubernet Deployment](https://github.com/cloudnloud/Kubernet-Deep-Dive/blob/main/Deployment.md)
+* [Kubernet replica set](https://github.com/cloudnloud/Kubernet-Deep-Dive/blob/main/Replicaset.md)
+* [Inginx ](https://github.com/cloudnloud/Kubernet-Deep-Dive/blob/main/Ingress.MD)
+
 
 
 # Thank You
