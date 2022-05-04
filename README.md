@@ -10,7 +10,7 @@
 
 ## Topics 
 
-* [Prerequisites](https://github.com/cloudnloud/Kubernet-Deep-Dive/blob/main/Prerequisites.MD)
+* [kubernetes installation prerequisites (on-premises)](https://github.com/cloudnloud/Kubernet-Deep-Dive/blob/main/Prerequisites.MD)
 * [Kubernet cluster installation and configuration (on-premises)](https://github.com/cloudnloud/Kubernet-Deep-Dive/blob/main/Installation.md)
 * [POD creation](https://github.com/cloudnloud/Kubernet-Deep-Dive/blob/main/POD.md)
 * [Name Space](https://github.com/cloudnloud/Kubernet-Deep-Dive/blob/main/POD.md)
