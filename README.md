@@ -13,8 +13,8 @@
 
 ## Labs
 
-* [Kubernet cluster installation and configuration (on-premises)](docs/01-prerequisites.md)
-* [Provisioning Compute Resources](docs/02-compute-resources.md)
+* [](docs/01-prerequisites.md)
+* [Kubernet cluster installation and configuration (on-premises)](https://github.com/cloudnloud/Kubernet-Deep-Dive/blob/main/Installation.md)
 * [Installing the Client Tools](docs/03-client-tools.md)
 # Topics 
 -	Kubernet cluster installation and configuration (on-premises)
