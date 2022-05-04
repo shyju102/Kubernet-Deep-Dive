@@ -18,6 +18,7 @@
 -	Kubernet Deployment 
 -	Kubernet replica set 
 -	Inginx 
+-	[Borg]: https://research.google.com/pubs/pub43438.html
 
 
 
