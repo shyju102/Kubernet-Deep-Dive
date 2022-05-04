@@ -107,8 +107,8 @@ kubeadm token create --print-join-command
 ```
 
 - POD creation 
-- [https://github.com/shyju102/Kubernet-Deep-Dive-/blob/main/POD.md] [#pod]
-- - [Getting Started](#getting-started)
+- https://github.com/shyju102/Kubernet-Deep-Dive-/blob/main/POD.md
+
 
 
 <h3 align="left">Connect with Me:</h3>
