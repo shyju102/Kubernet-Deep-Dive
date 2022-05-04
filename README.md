@@ -18,28 +18,10 @@
 -	Kubernet Deployment 
 -	Kubernet replica set 
 -	Inginx 
-[Borg]: https://research.google.com/pubs/pub43438.html
-
-That said, if you have questions, reach out to us
-[one way or another][communication].
-
-[announcement]: https://cncf.io/news/announcement/2015/07/new-cloud-native-computing-foundation-drive-alignment-among-container
-[Borg]: https://research.google.com/pubs/pub43438.html
-[CNCF]: https://www.cncf.io/about
-[communication]: https://git.k8s.io/community/communication
-[community repository]: https://git.k8s.io/community
-[containerized applications]: https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
-[developer's documentation]: https://git.k8s.io/community/contributors/devel#readme
-[Docker environment]: https://docs.docker.com/engine
-[Go environment]: https://golang.org/doc/install
-[GoPkg]: https://pkg.go.dev/k8s.io/kubernetes
-[GoPkg Widget]: https://pkg.go.dev/badge/k8s.io/kubernetes.svg
-[interactive tutorial]: https://kubernetes.io/docs/tutorials/kubernetes-basics
-[kubernetes.io]: https://kubernetes.io
-[Scalable Microservices with Kubernetes]: https://www.udacity.com/course/scalable-microservices-with-kubernetes--ud615
-[troubleshooting guide]: https://kubernetes.io/docs/tasks/debug/
 
 
+# Thank You
+A special thanks to all of our Cloudnloud team members who work in different time zones all over the world to make all of our communication platforms an enjoyable place!
 
 
 
