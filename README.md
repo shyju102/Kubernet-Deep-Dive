@@ -17,6 +17,7 @@
 * [Kubernet Deployment](https://github.com/cloudnloud/Kubernet-Deep-Dive/blob/main/Deployment.md)
 * [Kubernet replica set](https://github.com/cloudnloud/Kubernet-Deep-Dive/blob/main/Replicaset.md)
 * [Inginx ](https://github.com/cloudnloud/Kubernet-Deep-Dive/blob/main/Ingress.MD)
+* [EKS ](https://github.com/cloudnloud/Kubernet-Deep-Dive/tree/main/EKS)
 * [Q&A](https://github.com/cloudnloud/Kubernet-Deep-Dive/blob/main/Q%26A.md)
 
 
