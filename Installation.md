@@ -93,8 +93,6 @@ genertae new key for join the kubeclsuter
 kubeadm token create --print-join-command
 ```
 
-- POD creation 
-- https://github.com/shyju102/Kubernet-Deep-Dive-/blob/main/POD.md
 
 
 
