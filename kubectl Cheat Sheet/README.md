@@ -1,22 +1,3 @@
----
-title: kubectl Cheat Sheet
-reviewers:
-- erictune
-- krousey
-- clove
-content_type: concept
-weight: 10 # highlight it
-card:
-  name: reference
-  weight: 30
----
-
-<!-- overview -->
-
-This page contains a list of commonly used `kubectl` commands and flags.
-
-<!-- body -->
-
 ## Kubectl autocomplete
 
 ### BASH
@@ -403,64 +384,4 @@ kubectl api-resources -o wide                # All resources with expanded (aka 
 kubectl api-resources --verbs=list,get       # All resources that support the "list" and "get" request verbs
 kubectl api-resources --api-group=extensions # All resources in the "extensions" API group
 ```
-
-### Formatting output
-
-To output details to your terminal window in a specific format, add the `-o` (or `--output`) flag to a supported `kubectl` command.
-
-Output format | Description
---------------| -----------
-`-o=custom-columns=<spec>` | Print a table using a comma separated list of custom columns
-`-o=custom-columns-file=<filename>` | Print a table using the custom columns template in the `<filename>` file
-`-o=json`     | Output a JSON formatted API object
-`-o=jsonpath=<template>` | Print the fields defined in a [jsonpath](/docs/reference/kubectl/jsonpath) expression
-`-o=jsonpath-file=<filename>` | Print the fields defined by the [jsonpath](/docs/reference/kubectl/jsonpath) expression in the `<filename>` file
-`-o=name`     | Print only the resource name and nothing else
-`-o=wide`     | Output in the plain-text format with any additional information, and for pods, the node name is included
-`-o=yaml`     | Output a YAML formatted API object
-
-Examples using `-o=custom-columns`:
-
-```bash
-# All images running in a cluster
-kubectl get pods -A -o=custom-columns='DATA:spec.containers[*].image'
-
-# All images running in namespace: default, grouped by Pod
-kubectl get pods --namespace default --output=custom-columns="NAME:.metadata.name,IMAGE:.spec.containers[*].image"
-
- # All images excluding "k8s.gcr.io/coredns:1.6.2"
-kubectl get pods -A -o=custom-columns='DATA:spec.containers[?(@.image!="k8s.gcr.io/coredns:1.6.2")].image'
-
-# All fields under metadata regardless of name
-kubectl get pods -A -o=custom-columns='DATA:metadata.*'
-```
-
-More examples in the kubectl [reference documentation](/docs/reference/kubectl/#custom-columns).
-
-### Kubectl output verbosity and debugging
-
-Kubectl verbosity is controlled with the `-v` or `--v` flags followed by an integer representing the log level. General Kubernetes logging conventions and the associated log levels are described [here](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md).
-
-Verbosity | Description
---------------| -----------
-`--v=0` | Generally useful for this to *always* be visible to a cluster operator.
-`--v=1` | A reasonable default log level if you don't want verbosity.
-`--v=2` | Useful steady state information about the service and important log messages that may correlate to significant changes in the system. This is the recommended default log level for most systems.
-`--v=3` | Extended information about changes.
-`--v=4` | Debug level verbosity.
-`--v=5` | Trace level verbosity.
-`--v=6` | Display requested resources.
-`--v=7` | Display HTTP request headers.
-`--v=8` | Display HTTP request contents.
-`--v=9` | Display HTTP request contents without truncation of contents.
-
-## {{% heading "whatsnext" %}}
-
-* Read the [kubectl overview](/docs/reference/kubectl/) and learn about [JsonPath](/docs/reference/kubectl/jsonpath).
-
-* See [kubectl](/docs/reference/kubectl/kubectl/) options.
-
-* Also read [kubectl Usage Conventions](/docs/reference/kubectl/conventions/) to understand how to use kubectl in reusable scripts.
-
-* See more community [kubectl cheatsheets](https://github.com/dennyzhang/cheatsheet-kubernetes-A4).
 
