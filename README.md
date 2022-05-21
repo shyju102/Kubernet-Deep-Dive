@@ -24,7 +24,7 @@
 
 # Thank You !
 
-A special thanks to all of our **Cloudnloud team members** who work in different time zones all over the world to make all of our communication platforms an enjoyable place!
+A special thanks to all of our **Cloudnloud Team Members** who work in different time zones all over the world to make all of our communication platforms an enjoyable place!
 
 
 
