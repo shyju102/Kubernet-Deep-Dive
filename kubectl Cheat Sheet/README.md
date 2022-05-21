@@ -1,24 +1,4 @@
-* Kubectl Kubernetes CheatSheet                                   :Cloud:
-:PROPERTIES:
-:type:     kubernetes
-:export_file_name: cheatsheet-kubernetes-A4.pdf
-:END:
-
-#+BEGIN_HTML
-<a href="https://github.com/dennyzhang/cheatsheet-kubernetes-A4"><img align="right" width="200" height="183" src="https://www.dennyzhang.com/wp-content/uploads/denny/watermark/github.png" /></a>
-<div id="the whole thing" style="overflow: hidden;">
-<div style="float: left; padding: 5px"> <a href="https://www.linkedin.com/in/dennyzhang001"><img src="https://www.dennyzhang.com/wp-content/uploads/sns/linkedin.png" alt="linkedin" /></a></div>
-<div style="float: left; padding: 5px"><a href="https://github.com/dennyzhang"><img src="https://www.dennyzhang.com/wp-content/uploads/sns/github.png" alt="github" /></a></div>
-<div style="float: left; padding: 5px"><a href="https://www.dennyzhang.com/slack" target="_blank" rel="nofollow"><img src="https://www.dennyzhang.com/wp-content/uploads/sns/slack.png" alt="slack"/></a></div>
-</div>
-
-<br/><br/>
-<a href="http://makeapullrequest.com" target="_blank" rel="nofollow"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"/></a>
-#+END_HTML
-
-- PDF Link: [[https://github.com/dennyzhang/cheatsheet-kubernetes-A4/blob/master/cheatsheet-kubernetes-A4.pdf][cheatsheet-kubernetes-A4.pdf]], Category: [[https://cheatsheet.dennyzhang.com/category/cloud/][Cloud]]
-- Blog URL: https://cheatsheet.dennyzhang.com/cheatsheet-kubernetes-A4
-- Related posts: [[https://cheatsheet.dennyzhang.com/cheatsheet-kubernetes-A4][Kubectl CheatSheet]], [[https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates][Kubernetes Yaml]], [[https://github.com/topics/denny-cheatsheets][#denny-cheatsheets]]
+* Kubectl Kubernetes CheatSheet                                   
 
 File me [[https://github.com/dennyzhang/cheatsheet.dennyzhang.com/issues][Issues]] or star [[https://github.com/dennyzhang/cheatsheet.dennyzhang.com][this repo]].
 ** Common Commands
