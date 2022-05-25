@@ -10,5 +10,11 @@ The Ingress resource supports the following features:
 
 See the [Ingress User Guide](https://kubernetes.io/docs/user-guide/ingress/) to learn more about the Ingress resource.
 
-## Architecture diagram
+## The Ingress Controller at a High Level
+
 ![ingress](https://user-images.githubusercontent.com/62458394/166744986-6af3dc87-787a-422b-998f-8acab6cdb7d7.jpg)
+
+### What is the Ingress Controller?
+The Ingress Controller is an application that runs in a cluster and configures an HTTP load balancer according to Ingress resources. The load balancer can be a software load balancer running in the cluster or a hardware or cloud load balancer running externally. Different load balancers require different Ingress Controller implementations.
+
+In the case of NGINX, the Ingress Controller is deployed in a pod along with the load balancer.
