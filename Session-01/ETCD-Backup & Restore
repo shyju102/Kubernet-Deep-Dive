@@ -1,1 +1,43 @@
+**What is etcd?**
+
+ETCD is a key-value store used as a backing store for all Kubernetes cluster data. When we talk about cluster data we are more specifically talking about the cluster state and the configuration of the cluster, deployments, pod state, node state, and configuration are stored here.
+
+
+Check ETCD version
+Before starting the backup always verify the ETCD version
+
+```
+ kubectl describe pod etcd-controlplane -n kube-system | grep Image 
+``` 
+
+
+![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1657106433911/5AsIL_8gG.png align="left")
+
+
+![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1657106560535/BIFsDM4_2.png align="left")
+
+Take Backup
+
+
+```
+ETCDCTL_API=3 etcdctl snapshot save --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key --endpoints=127.0.0.1:2379  snapshot.db
+``` 
+
+![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1657106810311/nSa8Ft7Pl.png align="left")
+
+![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1657106828295/uOG0DwW33.png align="left")
+
+
+
+![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1657107239745/d6yDUjUc6.png align="left")
+
+```
+rm -rf /var/lib/etcd
+``` 
+
+```
+ETCDCTL_API=3 etcdctl snapshot restore --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key --endpoints=127.0.0.1:2379 --data-dir="/var/lib/etcd" --initial-cluster="master=https://127.0.0.1:2380" --name="master" --initial-advertise-peer-urls="https://127.0.0.1:2380" snapshot.db
+``` 
+
+![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1657107274108/alIFI5y_W.png align="left")
 
