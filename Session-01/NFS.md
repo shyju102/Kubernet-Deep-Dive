@@ -24,10 +24,6 @@ Kubernetes allows you to mount a Volume as a local drive on a container.
 
 Please refer to this link  👉  : [NFS Server Configuration ](https://blog.cloudnloud.com/nfs-server-and-client-configuration) 
 
-**Diagram **
-
-
-![Shyju-Kubernetes (6).png](https://cdn.hashnode.com/res/hashnode/image/upload/v1660797255165/y2q3WUU5G.png align="left")
 
 ### PV creation 
 ```
@@ -147,10 +143,6 @@ tmpfs                           957M     0  957M   0% /sys/firmware
 
 ## Step 2
 **Requirement: ** NFS Server 
-
-**Diagram **
-
-![Shyju-Kubernetes (5).png](https://cdn.hashnode.com/res/hashnode/image/upload/v1660797122131/OnRA3dAi3.png align="left")
 
 ### Pod creation manifest file 
 In the same file, mention the NFS server details and mount location.
