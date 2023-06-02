@@ -1,5 +1,7 @@
-Disable swap
-```swapoff -a; sed -i '/swap/d' /etc/fstab```
+#Disable swap
+
+`swapoff -a; sed -i '/swap/d' /etc/fstab`
+
 Disable Firewall
 ```systemctl disable --now ufw```
 Install containerd runtime
