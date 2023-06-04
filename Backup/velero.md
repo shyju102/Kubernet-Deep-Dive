@@ -15,3 +15,5 @@ https://hub.docker.com/r/minio/minio/
    velero get backup-location
    
    velero backup describe test-namespacebackup
+   
+    velero restore create test --from-backup test-namespacebackup
