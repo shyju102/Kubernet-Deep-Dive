@@ -1,3 +1,464 @@
-Running minio container
-docker pull minio/minio
-docker run --name minio -p 9000:9000 -v data:/data minio/minio server /data
+root@HODEV-K8S-MASTER01:~# velero backup create demo2 --include-namespaces shyju --wait
+Backup request "demo2" submitted successfully.
+Waiting for backup to complete. You may safely press ctrl-c to stop waiting - your backup will continue in the background.
+....
+Backup completed with status: PartiallyFailed. You may check for more information using the commands `velero backup describe demo2` and `velero backup logs demo2`.
+root@HODEV-K8S-MASTER01:~# velero backup logs demo2
+time="2023-06-22T15:32:29Z" level=info msg="Setting up backup temp file" backup=velero/demo2 logSource="pkg/controller/backup_controller.go:612"
+time="2023-06-22T15:32:29Z" level=info msg="Setting up plugin manager" backup=velero/demo2 logSource="pkg/controller/backup_controller.go:619"
+time="2023-06-22T15:32:29Z" level=info msg="Getting backup item actions" backup=velero/demo2 logSource="pkg/controller/backup_controller.go:623"
+time="2023-06-22T15:32:29Z" level=info msg="Setting up backup store to check for backup existence" backup=velero/demo2 logSource="pkg/controller/backup_controller.go:628"
+time="2023-06-22T15:32:29Z" level=info msg="Writing backup version file" backup=velero/demo2 logSource="pkg/backup/backup.go:197"
+time="2023-06-22T15:32:29Z" level=info msg="Including namespaces: shyju" backup=velero/demo2 logSource="pkg/backup/backup.go:203"
+time="2023-06-22T15:32:29Z" level=info msg="Excluding namespaces: <none>" backup=velero/demo2 logSource="pkg/backup/backup.go:204"
+time="2023-06-22T15:32:29Z" level=info msg="Including resources: *" backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:506"
+time="2023-06-22T15:32:29Z" level=info msg="Excluding resources: <none>" backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:507"
+time="2023-06-22T15:32:29Z" level=info msg="Backing up all volumes using pod volume backup: false" backup=velero/demo2 logSource="pkg/backup/backup.go:222"
+time="2023-06-22T15:32:29Z" level=warning msg="Failed to discover group: vault.kio.kasten.io/v1alpha1" backup=velero/demo2 cmd=/velero error="the server is currently unable to handle the request" logSource="pkg/discovery/helper.go:220" pluginName=velero
+time="2023-06-22T15:32:29Z" level=warning msg="Failed to discover group: repositories.kio.kasten.io/v1alpha1" backup=velero/demo2 cmd=/velero error="the server is currently unable to handle the request" logSource="pkg/discovery/helper.go:220" pluginName=velero
+time="2023-06-22T15:32:29Z" level=warning msg="Failed to discover group: apps.kio.kasten.io/v1alpha1" backup=velero/demo2 cmd=/velero error="the server is currently unable to handle the request" logSource="pkg/discovery/helper.go:220" pluginName=velero
+time="2023-06-22T15:32:29Z" level=warning msg="Failed to discover group: actions.kio.kasten.io/v1alpha1" backup=velero/demo2 cmd=/velero error="the server is currently unable to handle the request" logSource="pkg/discovery/helper.go:220" pluginName=velero
+time="2023-06-22T15:32:29Z" level=warning msg="Failed to discover group: actions.kio.kasten.io/v1alpha1" backup=velero/demo2 cmd=/velero error="the server is currently unable to handle the request" logSource="pkg/discovery/helper.go:220" pluginName=velero
+time="2023-06-22T15:32:29Z" level=warning msg="Failed to discover group: apps.kio.kasten.io/v1alpha1" backup=velero/demo2 cmd=/velero error="the server is currently unable to handle the request" logSource="pkg/discovery/helper.go:220" pluginName=velero
+time="2023-06-22T15:32:29Z" level=warning msg="Failed to discover group: repositories.kio.kasten.io/v1alpha1" backup=velero/demo2 cmd=/velero error="the server is currently unable to handle the request" logSource="pkg/discovery/helper.go:220" pluginName=velero
+time="2023-06-22T15:32:29Z" level=warning msg="Failed to discover group: vault.kio.kasten.io/v1alpha1" backup=velero/demo2 cmd=/velero error="the server is currently unable to handle the request" logSource="pkg/discovery/helper.go:220" pluginName=velero
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:198" resource=pods
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=pods
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource pods was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 1 items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=pods
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:198" resource=persistentvolumeclaims
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=persistentvolumeclaims
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource persistentvolumeclaims was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 1 items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=persistentvolumeclaims
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:198" resource=persistentvolumes
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource persistentvolumes, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:254" resource=persistentvolumes
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:198" resource=limitranges
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=limitranges
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource limitranges was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=limitranges
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:198" resource=secrets
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=secrets
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource secrets was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=secrets
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:198" resource=services
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=services
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource services was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=services
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:198" resource=namespaces
+time="2023-06-22T15:32:29Z" level=info msg="Getting namespace" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:296" namespace=shyju resource=namespaces
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:198" resource=configmaps
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=configmaps
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource configmaps was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 1 items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=configmaps
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:198" resource=replicationcontrollers
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=replicationcontrollers
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource replicationcontrollers was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=replicationcontrollers
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:198" resource=endpoints
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=endpoints
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource endpoints was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=endpoints
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:198" resource=resourcequotas
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=resourcequotas
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource resourcequotas was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=resourcequotas
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:198" resource=serviceaccounts
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=serviceaccounts
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource serviceaccounts was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 1 items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=serviceaccounts
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:198" resource=events
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=events
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource events was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=events
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:198" resource=podtemplates
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=podtemplates
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource podtemplates was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=podtemplates
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:198" resource=nodes
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource nodes, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=v1 logSource="pkg/backup/item_collector.go:254" resource=nodes
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=apiregistration.k8s.io/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=apiregistration.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=apiservices
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource apiservices.apiregistration.k8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=apiregistration.k8s.io/v1 logSource="pkg/backup/item_collector.go:254" resource=apiservices
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=apps/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=apps/v1 logSource="pkg/backup/item_collector.go:198" resource=deployments
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=apps/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=deployments
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource deployments.apps was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=apps/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=deployments
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=apps/v1 logSource="pkg/backup/item_collector.go:198" resource=replicasets
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=apps/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=replicasets
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource replicasets.apps was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=apps/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=replicasets
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=apps/v1 logSource="pkg/backup/item_collector.go:198" resource=controllerrevisions
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=apps/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=controllerrevisions
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource controllerrevisions.apps was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 1 items" backup=velero/demo2 group=apps/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=controllerrevisions
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=apps/v1 logSource="pkg/backup/item_collector.go:198" resource=statefulsets
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=apps/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=statefulsets
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource statefulsets.apps was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 1 items" backup=velero/demo2 group=apps/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=statefulsets
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=apps/v1 logSource="pkg/backup/item_collector.go:198" resource=daemonsets
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=apps/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=daemonsets
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource daemonsets.apps was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=apps/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=daemonsets
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=events.k8s.io/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=events.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=events
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it cohabitates and we've already processed it" backup=velero/demo2 cohabitatingResource1=events cohabitatingResource2=events.events.k8s.io group=events.k8s.io/v1 logSource="pkg/backup/item_collector.go:266" resource=events
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=autoscaling/v2 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=autoscaling/v2 logSource="pkg/backup/item_collector.go:198" resource=horizontalpodautoscalers
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=autoscaling/v2 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=horizontalpodautoscalers
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource horizontalpodautoscalers.autoscaling was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=autoscaling/v2 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=horizontalpodautoscalers
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=batch/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=batch/v1 logSource="pkg/backup/item_collector.go:198" resource=cronjobs
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=batch/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=cronjobs
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource cronjobs.batch was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=batch/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=cronjobs
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=batch/v1 logSource="pkg/backup/item_collector.go:198" resource=jobs
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=batch/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=jobs
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource jobs.batch was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=batch/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=jobs
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=certificates.k8s.io/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=certificates.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=certificatesigningrequests
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource certificatesigningrequests.certificates.k8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=certificates.k8s.io/v1 logSource="pkg/backup/item_collector.go:254" resource=certificatesigningrequests
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=networking.k8s.io/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=networking.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=networkpolicies
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=networking.k8s.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=networkpolicies
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource networkpolicies.networking.k8s.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=networking.k8s.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=networkpolicies
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=networking.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=ingresses
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=networking.k8s.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=ingresses
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource ingresses.networking.k8s.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=networking.k8s.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=ingresses
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=networking.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=ingressclasses
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource ingressclasses.networking.k8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=networking.k8s.io/v1 logSource="pkg/backup/item_collector.go:254" resource=ingressclasses
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=policy/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=policy/v1 logSource="pkg/backup/item_collector.go:198" resource=poddisruptionbudgets
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=policy/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=poddisruptionbudgets
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource poddisruptionbudgets.policy was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=policy/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=poddisruptionbudgets
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=rbac.authorization.k8s.io/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=rbac.authorization.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=clusterrolebindings
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource clusterrolebindings.rbac.authorization.k8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=rbac.authorization.k8s.io/v1 logSource="pkg/backup/item_collector.go:254" resource=clusterrolebindings
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=rbac.authorization.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=roles
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=rbac.authorization.k8s.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=roles
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource roles.rbac.authorization.k8s.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=rbac.authorization.k8s.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=roles
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=rbac.authorization.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=rolebindings
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=rbac.authorization.k8s.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=rolebindings
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource rolebindings.rbac.authorization.k8s.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=rbac.authorization.k8s.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=rolebindings
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=rbac.authorization.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=clusterroles
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource clusterroles.rbac.authorization.k8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=rbac.authorization.k8s.io/v1 logSource="pkg/backup/item_collector.go:254" resource=clusterroles
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=storage.k8s.io/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=storage.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=volumeattachments
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource volumeattachments.storage.k8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=storage.k8s.io/v1 logSource="pkg/backup/item_collector.go:254" resource=volumeattachments
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=storage.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=storageclasses
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource storageclasses.storage.k8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=storage.k8s.io/v1 logSource="pkg/backup/item_collector.go:254" resource=storageclasses
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=storage.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=csinodes
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource csinodes.storage.k8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=storage.k8s.io/v1 logSource="pkg/backup/item_collector.go:254" resource=csinodes
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=storage.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=csidrivers
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource csidrivers.storage.k8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=storage.k8s.io/v1 logSource="pkg/backup/item_collector.go:254" resource=csidrivers
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=storage.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=csistoragecapacities
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=storage.k8s.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=csistoragecapacities
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource csistoragecapacities.storage.k8s.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=storage.k8s.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=csistoragecapacities
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=admissionregistration.k8s.io/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=admissionregistration.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=mutatingwebhookconfigurations
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource mutatingwebhookconfigurations.admissionregistration.k8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=admissionregistration.k8s.io/v1 logSource="pkg/backup/item_collector.go:254" resource=mutatingwebhookconfigurations
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=admissionregistration.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=validatingwebhookconfigurations
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource validatingwebhookconfigurations.admissionregistration.k8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=admissionregistration.k8s.io/v1 logSource="pkg/backup/item_collector.go:254" resource=validatingwebhookconfigurations
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=apiextensions.k8s.io/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=apiextensions.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=customresourcedefinitions
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource customresourcedefinitions.apiextensions.k8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=apiextensions.k8s.io/v1 logSource="pkg/backup/item_collector.go:254" resource=customresourcedefinitions
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=scheduling.k8s.io/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=scheduling.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=priorityclasses
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource priorityclasses.scheduling.k8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=scheduling.k8s.io/v1 logSource="pkg/backup/item_collector.go:254" resource=priorityclasses
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=coordination.k8s.io/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=coordination.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=leases
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=coordination.k8s.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=leases
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource leases.coordination.k8s.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=coordination.k8s.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=leases
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=node.k8s.io/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=node.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=runtimeclasses
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource runtimeclasses.node.k8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=node.k8s.io/v1 logSource="pkg/backup/item_collector.go:254" resource=runtimeclasses
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=discovery.k8s.io/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=discovery.k8s.io/v1 logSource="pkg/backup/item_collector.go:198" resource=endpointslices
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=discovery.k8s.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=endpointslices
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource endpointslices.discovery.k8s.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=discovery.k8s.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=endpointslices
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=flowcontrol.apiserver.k8s.io/v1beta3 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=flowcontrol.apiserver.k8s.io/v1beta3 logSource="pkg/backup/item_collector.go:198" resource=flowschemas
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource flowschemas.flowcontrol.apiserver.k8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=flowcontrol.apiserver.k8s.io/v1beta3 logSource="pkg/backup/item_collector.go:254" resource=flowschemas
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=flowcontrol.apiserver.k8s.io/v1beta3 logSource="pkg/backup/item_collector.go:198" resource=prioritylevelconfigurations
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource prioritylevelconfigurations.flowcontrol.apiserver.k8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=flowcontrol.apiserver.k8s.io/v1beta3 logSource="pkg/backup/item_collector.go:254" resource=prioritylevelconfigurations
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=globalnetworkpolicies
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource globalnetworkpolicies.crd.projectcalico.org, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:254" resource=globalnetworkpolicies
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=networksets
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=networksets
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource networksets.crd.projectcalico.org was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=networksets
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=kubecontrollersconfigurations
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource kubecontrollersconfigurations.crd.projectcalico.org, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:254" resource=kubecontrollersconfigurations
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=ipamblocks
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource ipamblocks.crd.projectcalico.org, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:254" resource=ipamblocks
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=caliconodestatuses
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource caliconodestatuses.crd.projectcalico.org, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:254" resource=caliconodestatuses
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=felixconfigurations
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource felixconfigurations.crd.projectcalico.org, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:254" resource=felixconfigurations
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=globalnetworksets
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource globalnetworksets.crd.projectcalico.org, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:254" resource=globalnetworksets
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=ipamhandles
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource ipamhandles.crd.projectcalico.org, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:254" resource=ipamhandles
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=ippools
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource ippools.crd.projectcalico.org, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:254" resource=ippools
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=bgppeers
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource bgppeers.crd.projectcalico.org, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:254" resource=bgppeers
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=ipamconfigs
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource ipamconfigs.crd.projectcalico.org, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:254" resource=ipamconfigs
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=bgpconfigurations
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource bgpconfigurations.crd.projectcalico.org, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:254" resource=bgpconfigurations
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=bgpfilters
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource bgpfilters.crd.projectcalico.org, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:254" resource=bgpfilters
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=hostendpoints
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource hostendpoints.crd.projectcalico.org, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:254" resource=hostendpoints
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=clusterinformations
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource clusterinformations.crd.projectcalico.org, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:254" resource=clusterinformations
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=networkpolicies
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=networkpolicies
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource networkpolicies.crd.projectcalico.org was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=networkpolicies
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=ipreservations
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource ipreservations.crd.projectcalico.org, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:254" resource=ipreservations
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:198" resource=blockaffinities
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource blockaffinities.crd.projectcalico.org, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=crd.projectcalico.org/v1 logSource="pkg/backup/item_collector.go:254" resource=blockaffinities
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=kyverno.io/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=kyverno.io/v1 logSource="pkg/backup/item_collector.go:198" resource=clusterpolicies
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource clusterpolicies.kyverno.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=kyverno.io/v1 logSource="pkg/backup/item_collector.go:254" resource=clusterpolicies
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=kyverno.io/v1 logSource="pkg/backup/item_collector.go:198" resource=policies
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=kyverno.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=policies
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource policies.kyverno.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=kyverno.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=policies
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=kyverno.io/v1beta1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=kyverno.io/v1beta1 logSource="pkg/backup/item_collector.go:198" resource=updaterequests
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=kyverno.io/v1beta1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=updaterequests
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource updaterequests.kyverno.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=kyverno.io/v1beta1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=updaterequests
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for group" backup=velero/demo2 group=kyverno.io/v2alpha1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=kyverno.io/v2alpha1 logSource="pkg/backup/item_collector.go:198" resource=cleanuppolicies
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=kyverno.io/v2alpha1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=cleanuppolicies
+time="2023-06-22T15:32:29Z" level=info msg="list for groupResource cleanuppolicies.kyverno.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:29Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=kyverno.io/v2alpha1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=cleanuppolicies
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=kyverno.io/v2alpha1 logSource="pkg/backup/item_collector.go:198" resource=clustercleanuppolicies
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource clustercleanuppolicies.kyverno.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:29Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=kyverno.io/v2alpha1 logSource="pkg/backup/item_collector.go:254" resource=clustercleanuppolicies
+time="2023-06-22T15:32:29Z" level=info msg="Getting items for resource" backup=velero/demo2 group=kyverno.io/v2alpha1 logSource="pkg/backup/item_collector.go:198" resource=policyexceptions
+time="2023-06-22T15:32:29Z" level=info msg="Listing items" backup=velero/demo2 group=kyverno.io/v2alpha1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=policyexceptions
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource policyexceptions.kyverno.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=kyverno.io/v2alpha1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=policyexceptions
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for group" backup=velero/demo2 group=kyverno.io/v1alpha2 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=kyverno.io/v1alpha2 logSource="pkg/backup/item_collector.go:198" resource=backgroundscanreports
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=kyverno.io/v1alpha2 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=backgroundscanreports
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource backgroundscanreports.kyverno.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=kyverno.io/v1alpha2 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=backgroundscanreports
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=kyverno.io/v1alpha2 logSource="pkg/backup/item_collector.go:198" resource=admissionreports
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=kyverno.io/v1alpha2 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=admissionreports
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource admissionreports.kyverno.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=kyverno.io/v1alpha2 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=admissionreports
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=kyverno.io/v1alpha2 logSource="pkg/backup/item_collector.go:198" resource=clusterbackgroundscanreports
+time="2023-06-22T15:32:30Z" level=info msg="Skipping resource clusterbackgroundscanreports.kyverno.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:30Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=kyverno.io/v1alpha2 logSource="pkg/backup/item_collector.go:254" resource=clusterbackgroundscanreports
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=kyverno.io/v1alpha2 logSource="pkg/backup/item_collector.go:198" resource=clusteradmissionreports
+time="2023-06-22T15:32:30Z" level=info msg="Skipping resource clusteradmissionreports.kyverno.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:30Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=kyverno.io/v1alpha2 logSource="pkg/backup/item_collector.go:254" resource=clusteradmissionreports
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for group" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:198" resource=podvolumerestores
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=podvolumerestores
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource podvolumerestores.velero.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=podvolumerestores
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:198" resource=backupstoragelocations
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=backupstoragelocations
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource backupstoragelocations.velero.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=backupstoragelocations
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:198" resource=schedules
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=schedules
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource schedules.velero.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=schedules
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:198" resource=deletebackuprequests
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=deletebackuprequests
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource deletebackuprequests.velero.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=deletebackuprequests
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:198" resource=volumesnapshotlocations
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=volumesnapshotlocations
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource volumesnapshotlocations.velero.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=volumesnapshotlocations
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:198" resource=backuprepositories
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=backuprepositories
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource backuprepositories.velero.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=backuprepositories
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:198" resource=podvolumebackups
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=podvolumebackups
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource podvolumebackups.velero.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=podvolumebackups
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:198" resource=backups
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=backups
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource backups.velero.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=backups
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:198" resource=downloadrequests
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=downloadrequests
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource downloadrequests.velero.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=downloadrequests
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:198" resource=serverstatusrequests
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=serverstatusrequests
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource serverstatusrequests.velero.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=serverstatusrequests
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:198" resource=restores
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=restores
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource restores.velero.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=restores
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:198" resource=resticrepositories
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=resticrepositories
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource resticrepositories.velero.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=velero.io/v1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=resticrepositories
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for group" backup=velero/demo2 group=auth.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=auth.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:198" resource=k10clusterroles
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=auth.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=k10clusterroles
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource k10clusterroles.auth.kio.kasten.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=auth.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=k10clusterroles
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=auth.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:198" resource=k10clusterrolebindings
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=auth.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=k10clusterrolebindings
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource k10clusterrolebindings.auth.kio.kasten.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=auth.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=k10clusterrolebindings
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for group" backup=velero/demo2 group=config.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=config.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:198" resource=policypresets
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=config.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=policypresets
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource policypresets.config.kio.kasten.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=config.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=policypresets
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=config.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:198" resource=profiles
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=config.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=profiles
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource profiles.config.kio.kasten.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=config.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=profiles
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=config.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:198" resource=blueprintbindings
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=config.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=blueprintbindings
+time="2023-06-22T15:32:30Z" level=info msg="list for groupResource blueprintbindings.config.kio.kasten.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:30Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=config.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=blueprintbindings
+time="2023-06-22T15:32:30Z" level=info msg="Getting items for resource" backup=velero/demo2 group=config.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:198" resource=policies
+time="2023-06-22T15:32:30Z" level=info msg="Listing items" backup=velero/demo2 group=config.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=policies
+time="2023-06-22T15:32:31Z" level=info msg="list for groupResource policies.config.kio.kasten.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:31Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=config.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=policies
+time="2023-06-22T15:32:31Z" level=info msg="Getting items for resource" backup=velero/demo2 group=config.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:198" resource=transformsets
+time="2023-06-22T15:32:31Z" level=info msg="Listing items" backup=velero/demo2 group=config.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=transformsets
+time="2023-06-22T15:32:31Z" level=info msg="list for groupResource transformsets.config.kio.kasten.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:31Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=config.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=transformsets
+time="2023-06-22T15:32:31Z" level=info msg="Getting items for group" backup=velero/demo2 group=cr.kanister.io/v1alpha1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:31Z" level=info msg="Getting items for resource" backup=velero/demo2 group=cr.kanister.io/v1alpha1 logSource="pkg/backup/item_collector.go:198" resource=actionsets
+time="2023-06-22T15:32:31Z" level=info msg="Listing items" backup=velero/demo2 group=cr.kanister.io/v1alpha1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=actionsets
+time="2023-06-22T15:32:31Z" level=info msg="list for groupResource actionsets.cr.kanister.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:31Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=cr.kanister.io/v1alpha1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=actionsets
+time="2023-06-22T15:32:31Z" level=info msg="Getting items for resource" backup=velero/demo2 group=cr.kanister.io/v1alpha1 logSource="pkg/backup/item_collector.go:198" resource=profiles
+time="2023-06-22T15:32:31Z" level=info msg="Listing items" backup=velero/demo2 group=cr.kanister.io/v1alpha1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=profiles
+time="2023-06-22T15:32:31Z" level=info msg="list for groupResource profiles.cr.kanister.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:31Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=cr.kanister.io/v1alpha1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=profiles
+time="2023-06-22T15:32:31Z" level=info msg="Getting items for resource" backup=velero/demo2 group=cr.kanister.io/v1alpha1 logSource="pkg/backup/item_collector.go:198" resource=blueprints
+time="2023-06-22T15:32:31Z" level=info msg="Listing items" backup=velero/demo2 group=cr.kanister.io/v1alpha1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=blueprints
+time="2023-06-22T15:32:31Z" level=info msg="list for groupResource blueprints.cr.kanister.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:31Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=cr.kanister.io/v1alpha1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=blueprints
+time="2023-06-22T15:32:31Z" level=info msg="Getting items for group" backup=velero/demo2 group=dist.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:31Z" level=info msg="Getting items for resource" backup=velero/demo2 group=dist.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:198" resource=distributions
+time="2023-06-22T15:32:31Z" level=info msg="Listing items" backup=velero/demo2 group=dist.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=distributions
+time="2023-06-22T15:32:31Z" level=info msg="list for groupResource distributions.dist.kio.kasten.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:31Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=dist.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=distributions
+time="2023-06-22T15:32:31Z" level=info msg="Getting items for resource" backup=velero/demo2 group=dist.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:198" resource=bootstraps
+time="2023-06-22T15:32:31Z" level=info msg="Listing items" backup=velero/demo2 group=dist.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=bootstraps
+time="2023-06-22T15:32:31Z" level=info msg="list for groupResource bootstraps.dist.kio.kasten.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:31Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=dist.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=bootstraps
+time="2023-06-22T15:32:31Z" level=info msg="Getting items for resource" backup=velero/demo2 group=dist.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:198" resource=clusters
+time="2023-06-22T15:32:31Z" level=info msg="Listing items" backup=velero/demo2 group=dist.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=clusters
+time="2023-06-22T15:32:31Z" level=info msg="list for groupResource clusters.dist.kio.kasten.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:31Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=dist.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=clusters
+time="2023-06-22T15:32:31Z" level=info msg="Getting items for group" backup=velero/demo2 group=reporting.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:31Z" level=info msg="Getting items for resource" backup=velero/demo2 group=reporting.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:198" resource=reports
+time="2023-06-22T15:32:31Z" level=info msg="Listing items" backup=velero/demo2 group=reporting.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=reports
+time="2023-06-22T15:32:31Z" level=info msg="list for groupResource reports.reporting.kio.kasten.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:31Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=reporting.kio.kasten.io/v1alpha1 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=reports
+time="2023-06-22T15:32:31Z" level=info msg="Getting items for group" backup=velero/demo2 group=wgpolicyk8s.io/v1alpha2 logSource="pkg/backup/item_collector.go:107"
+time="2023-06-22T15:32:31Z" level=info msg="Getting items for resource" backup=velero/demo2 group=wgpolicyk8s.io/v1alpha2 logSource="pkg/backup/item_collector.go:198" resource=clusterpolicyreports
+time="2023-06-22T15:32:31Z" level=info msg="Skipping resource clusterpolicyreports.wgpolicyk8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:31Z" level=info msg="Skipping resource because it's excluded" backup=velero/demo2 group=wgpolicyk8s.io/v1alpha2 logSource="pkg/backup/item_collector.go:254" resource=clusterpolicyreports
+time="2023-06-22T15:32:31Z" level=info msg="Getting items for resource" backup=velero/demo2 group=wgpolicyk8s.io/v1alpha2 logSource="pkg/backup/item_collector.go:198" resource=policyreports
+time="2023-06-22T15:32:31Z" level=info msg="Listing items" backup=velero/demo2 group=wgpolicyk8s.io/v1alpha2 logSource="pkg/backup/item_collector.go:353" namespace=shyju resource=policyreports
+time="2023-06-22T15:32:31Z" level=info msg="list for groupResource policyreports.wgpolicyk8s.io was not paginated" backup=velero/demo2 logSource="pkg/backup/item_collector.go:531"
+time="2023-06-22T15:32:31Z" level=info msg="Retrieved 0 items" backup=velero/demo2 group=wgpolicyk8s.io/v1alpha2 logSource="pkg/backup/item_collector.go:384" namespace=shyju resource=policyreports
+time="2023-06-22T15:32:31Z" level=info msg="Collected 7 items matching the backup spec from the Kubernetes API (actual number of items backed up may be more or less depending on velero.io/exclude-from-backup annotation, plugins returning additional related items to back up, etc.)" backup=velero/demo2 logSource="pkg/backup/backup.go:280" progress=
+time="2023-06-22T15:32:31Z" level=info msg="Processing item" backup=velero/demo2 logSource="pkg/backup/backup.go:357" name=web-0 namespace=shyju progress= resource=pods
+time="2023-06-22T15:32:31Z" level=info msg="Backing up item" backup=velero/demo2 logSource="pkg/backup/item_backupper.go:173" name=web-0 namespace=shyju resource=pods
+time="2023-06-22T15:32:31Z" level=info msg="Executing custom action" backup=velero/demo2 logSource="pkg/backup/item_backupper.go:325" name=web-0 namespace=shyju resource=pods
+time="2023-06-22T15:32:31Z" level=info msg="Executing podAction" backup=velero/demo2 cmd=/velero logSource="pkg/backup/pod_action.go:51" pluginName=velero
+time="2023-06-22T15:32:31Z" level=info msg="Adding pvc nfs-pvc to additionalItems" backup=velero/demo2 cmd=/velero logSource="pkg/backup/pod_action.go:75" pluginName=velero
+time="2023-06-22T15:32:31Z" level=info msg="Done executing podAction" backup=velero/demo2 cmd=/velero logSource="pkg/backup/pod_action.go:85" pluginName=velero
+time="2023-06-22T15:32:31Z" level=info msg="Backing up item" backup=velero/demo2 logSource="pkg/backup/item_backupper.go:173" name=nfs-pvc namespace=shyju resource=persistentvolumeclaims
+time="2023-06-22T15:32:31Z" level=info msg="Executing custom action" backup=velero/demo2 logSource="pkg/backup/item_backupper.go:325" name=nfs-pvc namespace=shyju resource=persistentvolumeclaims
+time="2023-06-22T15:32:31Z" level=info msg="Executing PVCAction" backup=velero/demo2 cmd=/velero logSource="pkg/backup/backup_pv_action.go:49" pluginName=velero
+time="2023-06-22T15:32:33Z" level=info msg="1 errors encountered backup up item" backup=velero/demo2 logSource="pkg/backup/backup.go:431" name=web-0
+time="2023-06-22T15:32:33Z" level=error msg="Error backing up item" backup=velero/demo2 error="daemonset pod not found in running state in node hodev-k8s-worker01" error.file="/go/src/github.com/vmware-tanzu/velero/pkg/nodeagent/node_agent.go:74" error.function=github.com/vmware-tanzu/velero/pkg/nodeagent.IsRunningInNode logSource="pkg/backup/backup.go:435" name=web-0
+time="2023-06-22T15:32:33Z" level=info msg="Backed up 2 items out of an estimated total of 8 (estimate will change throughout the backup)" backup=velero/demo2 logSource="pkg/backup/backup.go:397" name=web-0 namespace=shyju progress= resource=pods
+time="2023-06-22T15:32:33Z" level=info msg="Processing item" backup=velero/demo2 logSource="pkg/backup/backup.go:357" name=nfs-pvc namespace=shyju progress= resource=persistentvolumeclaims
+time="2023-06-22T15:32:33Z" level=info msg="Skipping item because it's already been backed up." backup=velero/demo2 logSource="pkg/backup/item_backupper.go:168" name=nfs-pvc namespace=shyju resource=persistentvolumeclaims
+time="2023-06-22T15:32:33Z" level=info msg="Backed up 2 items out of an estimated total of 7 (estimate will change throughout the backup)" backup=velero/demo2 logSource="pkg/backup/backup.go:397" name=nfs-pvc namespace=shyju progress= resource=persistentvolumeclaims
+time="2023-06-22T15:32:33Z" level=info msg="Processing item" backup=velero/demo2 logSource="pkg/backup/backup.go:357" name=shyju namespace= progress= resource=namespaces
+time="2023-06-22T15:32:33Z" level=info msg="Backing up item" backup=velero/demo2 logSource="pkg/backup/item_backupper.go:173" name=shyju namespace= resource=namespaces
+time="2023-06-22T15:32:33Z" level=info msg="Backed up 3 items out of an estimated total of 7 (estimate will change throughout the backup)" backup=velero/demo2 logSource="pkg/backup/backup.go:397" name=shyju namespace= progress= resource=namespaces
+time="2023-06-22T15:32:33Z" level=info msg="Processing item" backup=velero/demo2 logSource="pkg/backup/backup.go:357" name=kube-root-ca.crt namespace=shyju progress= resource=configmaps
+time="2023-06-22T15:32:33Z" level=info msg="Backing up item" backup=velero/demo2 logSource="pkg/backup/item_backupper.go:173" name=kube-root-ca.crt namespace=shyju resource=configmaps
+time="2023-06-22T15:32:33Z" level=info msg="Backed up 4 items out of an estimated total of 7 (estimate will change throughout the backup)" backup=velero/demo2 logSource="pkg/backup/backup.go:397" name=kube-root-ca.crt namespace=shyju progress= resource=configmaps
+time="2023-06-22T15:32:33Z" level=info msg="Processing item" backup=velero/demo2 logSource="pkg/backup/backup.go:357" name=default namespace=shyju progress= resource=serviceaccounts
+time="2023-06-22T15:32:33Z" level=info msg="Backing up item" backup=velero/demo2 logSource="pkg/backup/item_backupper.go:173" name=default namespace=shyju resource=serviceaccounts
+time="2023-06-22T15:32:33Z" level=info msg="Executing custom action" backup=velero/demo2 logSource="pkg/backup/item_backupper.go:325" name=default namespace=shyju resource=serviceaccounts
+time="2023-06-22T15:32:33Z" level=info msg="Running ServiceAccountAction" backup=velero/demo2 cmd=/velero logSource="pkg/backup/service_account_action.go:77" pluginName=velero
+time="2023-06-22T15:32:33Z" level=info msg="Done running ServiceAccountAction" backup=velero/demo2 cmd=/velero logSource="pkg/backup/service_account_action.go:120" pluginName=velero
+time="2023-06-22T15:32:33Z" level=info msg="Backed up 5 items out of an estimated total of 7 (estimate will change throughout the backup)" backup=velero/demo2 logSource="pkg/backup/backup.go:397" name=default namespace=shyju progress= resource=serviceaccounts
+time="2023-06-22T15:32:33Z" level=info msg="Processing item" backup=velero/demo2 logSource="pkg/backup/backup.go:357" name=web-675b748466 namespace=shyju progress= resource=controllerrevisions.apps
+time="2023-06-22T15:32:33Z" level=info msg="Backing up item" backup=velero/demo2 logSource="pkg/backup/item_backupper.go:173" name=web-675b748466 namespace=shyju resource=controllerrevisions.apps
+time="2023-06-22T15:32:33Z" level=info msg="Backed up 6 items out of an estimated total of 7 (estimate will change throughout the backup)" backup=velero/demo2 logSource="pkg/backup/backup.go:397" name=web-675b748466 namespace=shyju progress= resource=controllerrevisions.apps
+time="2023-06-22T15:32:33Z" level=info msg="Processing item" backup=velero/demo2 logSource="pkg/backup/backup.go:357" name=web namespace=shyju progress= resource=statefulsets.apps
+time="2023-06-22T15:32:33Z" level=info msg="Backing up item" backup=velero/demo2 logSource="pkg/backup/item_backupper.go:173" name=web namespace=shyju resource=statefulsets.apps
+time="2023-06-22T15:32:33Z" level=info msg="Backed up 7 items out of an estimated total of 7 (estimate will change throughout the backup)" backup=velero/demo2 logSource="pkg/backup/backup.go:397" name=web namespace=shyju progress= resource=statefulsets.apps
+time="2023-06-22T15:32:33Z" level=info msg="Skipping resource customresourcedefinitions.apiextensions.k8s.io, because it's cluster-scoped and only specific namespaces or namespace scope types are included in the backup." backup=velero/demo2 logSource="pkg/util/collections/includes_excludes.go:155"
+time="2023-06-22T15:32:33Z" level=info msg="Backed up a total of 7 items" backup=velero/demo2 logSource="pkg/backup/backup.go:423" progress=
+root@HODEV-K8S-MASTER01:~#
