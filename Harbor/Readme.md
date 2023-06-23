@@ -50,7 +50,7 @@ $ systemctl restart docker
 Containerd
 
 
-```$ vi /etc/containerd/config.toml
+``` $ vi /etc/containerd/config.toml
 
 [plugins."io.containerd.grpc.v1.cri".registry]
 [plugins."io.containerd.grpc.v1.cri".registry.mirrors]
@@ -66,7 +66,8 @@ Containerd
   username = "admin"
 
 # Restart containerd
-$ systemctl restart containerd```
+$ systemctl restart containerd ```
+
 Create test deployment
 
-$ kubectl create deploy my-deploy --image=registry.home-k8s.lab/k8s/nginx:1.25.0
+``` $ kubectl create deploy my-deploy --image=registry.home-k8s.lab/k8s/nginx:1.25.0 ```
