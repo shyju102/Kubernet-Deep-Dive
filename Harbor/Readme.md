@@ -1,8 +1,8 @@
 
 Installation with Helm
 # Add repository and fetch harbor helm chart
-helm repo add harbor https://helm.goharbor.io
-helm fetch harbor/harbor --untar
+`helm repo add harbor https://helm.goharbor.io`
+`helm fetch harbor/harbor --untar`
 
 # Set custom configuration in the values file
 vim harbor/values.yaml
@@ -68,6 +68,6 @@ Containerd
 # Restart containerd
 $ systemctl restart containerd ```
 
-Create test deployment
+# Create test deployment
 
-``` $ kubectl create deploy my-deploy --image=registry.home-k8s.lab/k8s/nginx:1.25.0 ```
+$ kubectl create deploy my-deploy --image=registry.home-k8s.lab/k8s/nginx:1.25.0 
