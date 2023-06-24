@@ -26,6 +26,15 @@ velero version
 
 # Step 2
 Velero Server installation 
+
+# Create the secret file, like if you are using any public S3 compatible server, you need to use an access key and a secret key.
+If it is MINIO, the use of the login credentials
+  ```
+[default]
+aws_access_key_id=minioadmin
+aws_secret_access_key=minioadmin
+
+```
   ```   
 velero install --use-node-agent \
     --provider aws \
