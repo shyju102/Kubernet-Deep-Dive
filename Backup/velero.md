@@ -59,13 +59,13 @@ velero install --use-node-agent \
  ```
 ```  
    velero get backup-location
-   ```
+ ```
 ```   
    velero backup describe test-namespacebackup
-    ```
-```  
-    velero restore create test --from-backup test-namespacebackup
-  ```
+```
+```
+velero restore create test --from-backup test-namespacebackup 
+```
 
 ### Schedule
 
