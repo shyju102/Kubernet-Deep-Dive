@@ -72,3 +72,15 @@ velero restore create test --from-backup test-namespacebackup
 ```
 velero schedule create myproject --schedule="* * * * *" --include-namespaces shyju
 ```
+```
+velero schedule get
+```
+
+```
+velero schedule delete my-schedule
+```
+
+#### Delete all the Schedule 
+```
+velero schedule delete --all
+```
