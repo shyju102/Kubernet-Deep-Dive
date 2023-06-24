@@ -6,6 +6,22 @@ https://hub.docker.com/r/minio/minio/
 
 `docker run --name minio -p 9000:9000 -v data:/data minio/minio server /data`
 
+# Offical Documentation Page
+https://velero.io/
+### Velero installtion 
+# Step 1 velero client installation 
+Download the velero 
+https://github.com/vmware-tanzu/velero/releases/tag/v1.11.0
+extract the zip file 
+scp -r velero /usr/local/bin
+run #
+```
+velero version
+```
+
+
+# Step 2
+Velero Server installation 
   ```   
 velero install --use-node-agent \
     --provider aws \
