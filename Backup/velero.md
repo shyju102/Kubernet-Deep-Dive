@@ -24,6 +24,7 @@ velero version
 ```
 
 
+
 # Step 2
 Velero Server installation 
 
@@ -44,17 +45,28 @@ velero install --use-node-agent \
     --use-volume-snapshots=false \
     --backup-location-config region=minio,s3ForcePathStyle="true",s3Url=http://10.30.34.53:9000
 ```
- 
+ ```
    kubectl logs deployment/velero -n velero
-   
+  ```
+``` 
    velero get backup-location
-   
+   ```
+```
    velero backup create test-namespacebackup --include-namespaces test --wait
-   
+```
+```   
    velero backup logs test-namespacebackup
-   
+ ```
+```  
    velero get backup-location
-   
+   ```
+```   
    velero backup describe test-namespacebackup
-   
+    ```
+```  
     velero restore create test --from-backup test-namespacebackup
+  ```  
+### Schedule 
+```
+velero schedule create myproject --schedule="* * * * *" --include-namespaces shyju
+```
