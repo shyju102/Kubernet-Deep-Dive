@@ -7,11 +7,17 @@
 # Install containerd runtime
 `{
   apt update
+  
   apt install -y containerd apt-transport-https
+  
   mkdir /etc/containerd
+  
   containerd config default > /etc/containerd/config.toml
+  
   systemctl restart containerd
+  
   systemctl enable containerd
+  
 }`
 
 # Add apt repo for kubernetes
