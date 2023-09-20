@@ -1,4 +1,14 @@
-    containers:
+
+deploy metrics server
+
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+edit metrics server deployment by adding command
+
+k -n kube-system edit deploy metrics-server
+
+
+containers:
       - args:
         - --cert-dir=/tmp
         - --secure-port=4443
