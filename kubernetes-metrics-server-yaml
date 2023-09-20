@@ -10,3 +10,4 @@
         - --kubelet-insecure-tls
         - --kubelet-preferred-address-types=InternalIP 
         `
+https://gist.github.com/NileshGule/8f772cf04ea6ae9c76d3f3e9186165c2#file-kubernetes-metrics-server-yaml
