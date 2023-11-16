@@ -1,7 +1,4 @@
-# User certificate creation
-Related Youtube video here: 
 
-[[ Kube 68 ] Kubernetes RBAC Demo | Creating Users and Roles](https://www.youtube.com/watch?v=U67OwM-e9rQ&lc=Ugx2qEQhNPOGFn5PmRF4AaABAg)
 
 Generating private key for John (john.key)
 ```
