@@ -82,3 +82,28 @@ Restart containerd service so that above changes come into the affect.
 ```
 sudo systemctl restart containerd
 ```   
+
+Add Kubernetes Package Repository
+Kubernetes packages are not available in the default package repositories of Ubuntu 24.04, so for its installation first add it’s repository. Run these steps on each instance.
+
+
+Note: At the time of writing this post, latest version of Kubernetes was 1.30. So you can this version according your requirement.
+
+Download the public signing key for the Kubernetes package repository using curl command.
+
+$ curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/k8s.gpg
+Next, add the Kubernetes repository by running following command.
+
+
+$ echo 'deb [signed-by=/etc/apt/keyrings/k8s.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/k8s.list
+5) Install Kubernetes Components (Kubeadm, kubelet & kubectl)
+Install Kubernetes components like Kubeadm, kubelet and kubectl, run following apt commands on all the instances.
+
+$ sudo apt update
+$ sudo apt install kubelet kubeadm kubectl -y
+6) Initialize Kubernetes Cluster
+As all the prerequisites are met, now we are good to start the installation of Kubernetes on Ubuntu 24.04.
+
+Run following Kubeadm command from the master node only to initialize the Kubernetes cluster.
+
+$ sudo kubeadm init --control-plane-endpoint=k8s-master-noble
