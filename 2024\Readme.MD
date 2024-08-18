@@ -50,3 +50,35 @@ To load the above kernel parameters, run
 ```
 sudo sysctl --system
 ```
+
+## Install and Configure Containerd
+Containerd provides the container run time for Kubernetes. So, Install containerd on all three instances.
+
+First install containerd dependencies,
+```
+sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates
+```
+Next, add containerd repository using following set of commands.
+```
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/containerd.gpg
+```
+```
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+```
+Now, install containerd using following apt command.
+
+```
+sudo apt update && sudo apt install containerd.io -y
+```
+Next, configure containerd so that it starts using SystemdCgroup. Run beneath commands.
+```
+containerd config default | sudo tee /etc/containerd/config.toml >/dev/null 2>&1
+```
+```
+sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
+```
+Restart containerd service so that above changes come into the affect.
+
+```
+sudo systemctl restart containerd
+```   
