@@ -11,10 +11,8 @@
 It is highly recommended to disable swap space on your Ubuntu instances so that Kubernetes cluster works smoothly. Run beneath command on each instance to disable swap space.
 
 ```
-sudo swapoff -a
-```
-```
-sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+sudo sed -i '/swap/d' /etc/fstab
+swapoff -a
 ```
 
 Now, load the following kernel modules using modprobe command.
